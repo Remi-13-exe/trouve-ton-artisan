@@ -1,0 +1,62 @@
+
+
+
+/* Structure de base de la page */
+html, body {
+  height: 100%;            /* occupe toute la hauteur */
+  margin: 0;               /* supprime marges par défaut */
+  display: flex;
+  flex-direction: column;  /* empile header, main, footer */
+}
+
+/* Contenu principal qui pousse le footer */
+main {
+  flex: 1; /* prend tout l’espace dispo avant le footer */
+}
+
+/* Footer */
+.footer {
+  background-color: #00497C;
+  color: #fff;
+  width: 100%;            /* ✅ prend toute la largeur */
+  padding: 20px 0;
+  text-align: center;
+}
+
+
+/* conteneur des liens */
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none; /* ✅ supprime les puces */
+  padding: 0;
+  margin: 0;
+  gap: 50px;
+}
+
+.footer-links li {
+  display: inline-block;
+  padding: 0 20px;  /* ajoute de l’espace à gauche et à droite de chaque lien */
+
+}
+
+/* style des liens */
+.footer-links a {
+  color: #fff; /* ✅ texte blanc */
+  text-decoration: none; /* ✅ enlève le soulignement */
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  text-decoration: underline; /* effet au survol */
+  color: #ddd;
+}
+
+/* numéro en dessous */
+.footer-links .footer-phone {
+  flex-basis: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
