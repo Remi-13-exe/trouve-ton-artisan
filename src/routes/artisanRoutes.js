@@ -4,6 +4,27 @@ const { Artisan, Specialite } = require('../models');
 
 const router = express.Router();
 
+// ✅ GET artisans du mois (top = 1)
+router.get('/du-mois', async (req, res) => {
+  try {
+    const artisansDuMois = await Artisan.findAll({
+      where: { top: 1 },
+      limit: 3,
+      include: [
+        {
+          model: Specialite,
+          as: 'specialite',
+          attributes: ['nom'],
+        },
+      ],
+    });
+
+    res.json(artisansDuMois);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des artisans du mois :', error);
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+});
 
 // ✅ GET tous les artisans avec filtres (specialité + recherche par nom)
 router.get('/', async (req, res) => {
@@ -37,7 +58,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-
 // ✅ GET un artisan par son ID
 router.get('/:id', async (req, res) => {
   try {
@@ -61,6 +81,5 @@ router.get('/:id', async (req, res) => {
     res.status(500).json({ error: 'Erreur serveur lors de la récupération de l’artisan' });
   }
 });
-
 
 module.exports = router;

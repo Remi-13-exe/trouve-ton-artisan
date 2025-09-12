@@ -1,3 +1,9 @@
+console.log('✅ apiKeyMiddleware chargé');
+
+
+
+
+
 require('dotenv').config();
 
 module.exports = (req, res, next) => {
@@ -9,3 +15,5 @@ module.exports = (req, res, next) => {
 
   next();
 };
+
+
