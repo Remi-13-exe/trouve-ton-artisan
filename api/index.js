@@ -23,10 +23,14 @@ app.use(express.json());
 
 // Middleware CORS pour autoriser le front-end à accéder à l'API
 app.use(cors({
-  origin: 'http://localhost:3000',             // Front-end autorisé
-  methods: ['GET', 'POST'],                    // Méthodes HTTP autorisées
-  allowedHeaders: ['Content-Type', 'X-API-KEY'] // Headers autorisés
+  origin: [
+    'http://localhost:3000', 
+    'https://ton-frontend-sur-render.com' // Remplace par l’URL de ton front Render si tu en as un
+  ],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'X-API-KEY']
 }));
+
 
 // Middleware pour vérifier la clé API
 app.use(apiKeyMiddleware);
