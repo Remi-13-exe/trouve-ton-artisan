@@ -1,105 +1,115 @@
-.navbar-right {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 36%; // ← rétrécissement global
-  height: 50px; // ← hauteur réduite
-  background-color: #00497C;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1rem; // ← padding réduit
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-}
+@import '../index.scss';
 
-.navbar-list {
-  display: flex;
-  gap: 2rem; // ← espace réduit entre les <li>
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  li {
-    font-size: 17px; // ← taille de police réduite
-    font-weight: 500;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: opacity 0.2s ease;
-
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-}
-
-
-
+/* ====== HEADER STRUCTURE ====== */
 header {
-  padding-top: 0; /* supprime le padding du header */
+  padding-top: 0;
 }
-
-
 
 
 
 
 .custom-header {
-  position: relative;   /* ou fixed si tu veux le header toujours en haut */
+  position: fixed;
   top: 0;
   left: 0;
-  padding: 0;           /* supprime le padding interne */
-  margin: 0;            /* supprime le margin du header */
+  width: 100%;
+  height: 4rem; /* 50px */
   display: flex;
-  align-items: flex-start; /* aligne le contenu en haut */
+  align-items: center;
+  justify-content: space-between;
+  background-color: #00497C;
+  padding: auto  1rem;
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+
+  .logo {
+    display: block;
+    margin: -0.8125rem 0 0 0; /* -13px */
+    background: linear-gradient(180deg, #f1f8fc, #0074C7);
+    border-radius: 0.25rem;
+  }
 }
 
-.custom-header .logo {
-  display: block;
-   margin: -13px 0 0 0; /* 5px depuis le haut, ajuste selon ton besoin */
-     position: fixed;
 
-}
-
-
-
-
-
-.navbar-right input[type="text"] {
-  margin-left: 3.0rem; // ← espace plus compact
-  padding: 0.4rem 0.8rem; // ← padding réduit
-  border: none;
-  border-radius: 4px;
-  font-size: 0.8rem; // ← taille de texte réduite
-  background-color: white;
-  color: #00497C;
-  font-weight: 500;
-  width: 200px; // ← largeur réduite
-  max-width: 100%;
-}
-
-.navbar-right input::placeholder {
-  color: #00497C;
-  opacity: 0.7;
-}
-
-.search-wrapper {
+/* ====== NAVBAR DROITE ====== */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  color: white;
   position: relative;
-  width: 300px;       /* ajuste la largeur */
+  height: auto;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* ====== NAVBAR CONTENT ====== */
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 2rem;
+  background: transparent;
+  position: relative;
+  height: auto;
+}
+
+/* ====== LISTE NAVIGATION ====== */
+.navbar-list {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-list li {
+  font-size: 1.0625rem; /* 17px */
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.375rem;
+  transition: all 0.3s ease;
+}
+
+.navbar-list li:hover {
+  opacity: 0.9;
+  color: #0074C7;
+  background-color: #00355e;
+}
+
+/* ====== SEARCH INPUT ====== */
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  width: 12rem;
+  margin-right: 2rem;
 }
 
 .search-input {
   width: 100%;
-  border-radius: 9999px;   /* arrondi pill */
-  padding: 8px 40px 8px 15px;  /* padding à droite pour laisser la place */
+  border-radius: 19px;
+  padding: 0.5rem 2.5rem 0.5rem 0.9375rem; /* padding-right pour icône */
   border: 1px solid #ccc;
   outline: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #00497C;
+  background-color: white;
+}
+
+.search-input::placeholder {
+  color: #00497C;
+  opacity: 0.7;
 }
 
 .search-btn {
   position: absolute;
-  right: 30px;
+  right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
   border: none;
@@ -112,27 +122,216 @@ header {
   color: #000;
 }
 
+.search-icon {
+  font-size: 0.8rem;
+  color: #00497C;
+}
 
+/* ====== LIVE SEARCH RESULTS ====== */
+.live-search-results {
+  position: absolute;
+  top: 120%; /* juste sous la barre */
+  left: 0;
+  right: 0;
+  margin-top: 0.25rem;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 999;
+  max-height: 20rem;
+  overflow-y: auto;
+  font-size: 0.875rem;
+  color: #333;
 
+  .artisan-result-card {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
 
+    &:hover {
+      background: #f1f8fc;
+      transform: translateX(5px);
+    }
 
-/* Responsive pour petits écrans */
-@media (max-width: 600px) {
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+/* ====== BURGER MENU ====== */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 0.3rem;
+  cursor: pointer;
+
+  div {
+    width: 1.5rem;
+    height: 0.2rem;
+    background-color: white;
+    border-radius: 1rem;
+  }
+}
+
+/* ====== GRID ARTISANS ====== */
+.artisan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // desktop 3 colonnes
+  grid-auto-rows: auto;
+  gap: 2rem;
+  margin: 2rem auto 5rem auto;
+  max-width: 72rem; // ~1152px
+  justify-content: center;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr); // tablette
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; // mobile
+    gap: 1rem;
+  }
+}
+
+.artisan-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  }
+
+  h3 {
+    color: $accent-color;
+    margin-top: 0.5rem;
+  }
+
+  img {
+    width: 100%;
+    max-width: 12.5rem;
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+  }
+
+  button {
+    margin-top: 0.5rem;
+    background-color: $accent-color;
+    color: white;
+    border-radius: 1.25rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: $dark-accent;
+  }
+}
+
+/* ====== RESPONSIVE TABLETTE ====== */
+@media (max-width: 1024px) {
+  .navbar-right {
+    gap: 1rem;
+  }
+}
+
+/* ====== RESPONSIVE MOBILE ====== */
+@media (max-width: 768px) {
+  .navbar-right {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .burger {
+    display: flex;
+    margin-left: auto;
+    margin-right: 2rem;
+  }
+
+  .navbar-content {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #00497C;
+    padding: 1rem 1.5rem;
+    position: absolute;
+    top: 3.5rem;
+    right: 2rem;
+    width: auto;
+    max-width: 11rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.2);
+    z-index: 1050;
+    gap: 0.75rem;
+  }
+
+  .navbar-content.active {
+    display: flex;
+  }
+
+  .navbar-list {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .search-wrapper {
+    width: 100%;
+    margin-top: 0.75rem;
+  }
+
+  .search-input {
+    width: 100%;
+    padding-right: 2.5rem; // espace pour icône
+  }
+
+  .search-btn {
+    right: 0.75rem; // icône toujours alignée
+  }
+
+  .search-icon {
+    font-size: 0.8rem; // ne change pas en responsive
+  }
+}
+
+/* ====== RESPONSIVE PETIT MOBILE ====== */
+@media (max-width: 480px) {
   .navbar-right {
     flex-direction: column;
-    height: auto;
-    width: 100%;
-    padding: 1rem;
     align-items: flex-start;
   }
 
   .navbar-list {
-    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
-  .navbar-right input[type="text"] {
-    width: 100%;
-    margin-top: 1rem;
-    margin-left: 0;
+  .search-wrapper {
+    margin-top: 0.5rem;
+  }
+}
+
+/* ====== Animation ====== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

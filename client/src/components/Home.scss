@@ -1,0 +1,392 @@
+@import '../index.scss'; // Import des variables et styles globaux (ex: $accent-color)
+
+/* =======================
+   CONTAINER PRINCIPAL HOME
+   ======================= */
+.home-container {
+  margin-left: 15.625rem; // Décalage du contenu principal vers la droite (place pour sidebar ou menu fixe)
+
+  h3 {
+    color: $accent-color; // Couleur bleue définie dans les variables globales
+    font-size: 1.75rem;   // Taille de texte relativement grande
+    margin-bottom: 3rem;  // Espace en dessous du titre
+
+    // 🔹 Version tablette (taille réduite)
+    @media (max-width: 1024px) {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    // 🔹 Version mobile (encore plus petit)
+    @media (max-width: 768px) {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  // Ajustements du margin-left en responsive
+  @media (max-width: 1024px) {
+    margin-left: 5rem; // Moins de décalage
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 1rem; // Presque aucun décalage
+  }
+}
+
+/* =======================
+   SECTION CATEGORIES
+   ======================= */
+.category-wrapper {
+  display: flex;                // Organisation en colonne
+  flex-direction: column;
+  align-items: flex-start;      // Alignement à gauche
+  gap: 0.9375rem;               // Espacement vertical entre les boutons
+}
+
+/* Boutons (catégorie, profil, contact, etc.) 
+   Tous partagent une base commune */
+.btn-category,
+.btn-category-simple,
+.btn-profile,
+.btn-contact,
+.btn-send {
+  border: none;                     // Pas de bordure par défaut
+  cursor: pointer;                  // Curseur main
+  transition: background-color 0.3s; // Transition fluide hover
+}
+
+/* Boutons spécifiques aux catégories */
+.btn-category,
+.btn-category-simple {
+  background-color: $accent-color; // Fond bleu
+  color: #fff;                     // Texte blanc
+  border-radius: 3.125rem;         // Forme "pill"
+  padding: 0.625rem 1.25rem;       // Taille interne
+  font-size: 1rem;
+  display: inline-flex;            // Alignement du contenu
+  align-items: center;
+  gap: 0.625rem;                   // Espacement texte / icône
+}
+
+.btn-category:hover,
+.btn-category-simple:hover {
+  background-color: #005fa3; // Bleu plus foncé au survol
+}
+
+/* Cercle avec petite flèche (ex: indicateur de direction) */
+.arrow-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;     // Cercle parfait
+  background: #fff;       // Fond blanc
+  position: relative;
+
+  &::after {
+    content: '';                              // Triangle interne
+    border-left: 0.375rem solid transparent;  // Triangle vers le haut
+    border-right: 0.375rem solid transparent;
+    border-top: 0.375rem solid $accent-color; // Couleur accent
+    position: absolute;
+  }
+}
+
+/* Liste verticale des catégories avec une ligne bleue à gauche */
+.category-list {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.3125rem;
+  position: relative;
+  margin-bottom: 5rem; // Espacement en bas
+}
+
+/* Ligne verticale bleue qui accompagne les boutons */
+.blue-line {
+  width: 0.125rem;            // Épaisseur
+  background-color: $accent-color;
+  border-radius: 0.125rem;    // Coins arrondis
+  position: absolute;
+  left: 0; top: 0; bottom: 0; // Pleine hauteur
+}
+
+/* Empilement vertical des boutons */
+.buttons-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;        // Espacement
+  margin-left: 1.25rem; // Décalage par rapport à la ligne bleue
+}
+
+/* =======================
+   GRILLE DES ARTISANS
+   ======================= */
+.artisan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // 3 colonnes fixes sur desktop
+  grid-template-rows: repeat(2, auto);   // 2 lignes automatiques
+  gap: 2rem;                             // Espacement horizontal et vertical
+  margin: 2rem auto 5rem auto;
+  max-width: 72rem;                      // Limite largeur max (~1152px)
+  justify-content: center;
+
+  // Tablette : auto-fit, s’adapte en fonction de la largeur
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 1.5rem;
+  }
+
+  // Mobile : une seule colonne
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 1rem;
+  }
+}
+
+/* Carte individuelle artisan */
+.artisan-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); // Ombre douce
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);              // Légère élévation
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);  // Ombre plus forte
+  }
+
+  h3 {
+    color: $accent-color;
+    margin-top: 0.5rem;
+  }
+}
+
+/* Image artisan (liste et profil) */
+.artisan-img,
+.artisan-profile-img {
+  width: 100%;
+  max-width: 12.5rem;  // 200px
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+/* =======================
+   PROFIL DÉTAILLÉ ARTISAN
+   ======================= */
+.artisan-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 2rem 0 0 5.9375rem; // Positionnement avec marge gauche
+  padding: 1.5rem;
+  max-width: 18.75rem;        // Largeur max (300px)
+
+  .artisan-details {
+    text-align: left;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #333;
+
+    p {
+      margin: 0.5rem 0; // Espacement vertical entre paragraphes
+    }
+
+    a {
+      color: $accent-color;
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+/* =======================
+   BOUTONS ACTIONS
+   ======================= */
+.btn-profile,
+.btn-contact,
+.btn-send {
+  background-color: $accent-color;
+  color: white;
+  border-radius: 1.25rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  min-width: 5.9375rem; // 95px minimum
+}
+
+.btn-profile:hover,
+.btn-contact:hover,
+.btn-send:hover {
+  background-color: $dark-accent; // Variante plus foncée
+}
+
+/* =======================
+   FLECHE LONGUE (Décorative)
+   ======================= */
+.arrow-long {
+  position: relative;
+  width: 31.25rem;     // Longueur de la flèche
+  height: 0.125rem;    // Épaisseur
+  background-color: black;
+  transform: rotate(53.91deg); // Rotation en diagonale
+  margin: 15rem 20rem 20rem 8.75rem;
+
+  &::after {
+    content: "";                       // Pointe de la flèche
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    border-top: 0.125rem solid black;
+    border-right: 0.125rem solid black;
+    width: 0.625rem;
+    height: 0.625rem;
+  }
+
+  // Responsivité
+  @media (max-width: 1200px) {
+    width: 25rem;
+    margin: 12rem 12rem 15rem 5rem;
+  }
+
+  @media (max-width: 768px) {
+    width: 15rem;
+    margin: 8rem auto 10rem auto;
+  }
+
+  @media (max-width: 480px) {
+    width: 10rem;
+    margin: 5rem auto 6rem auto;
+  }
+}
+
+/* =======================
+   FORMULAIRE DE CONTACT
+   ======================= */
+.contact-form-ex {
+  display: flex;
+  flex-direction: column;
+  max-width: 43.75rem; // 700px
+  margin-left: 35rem;
+  margin-bottom: 10rem;
+  padding: 2.5rem;
+  background-color: #f9f9f9;
+  border-radius: 0.875rem;
+  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
+
+  // Responsivité : marges réduites et padding ajusté
+  @media (max-width: 1200px) {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    padding: 2rem;
+  }
+  @media (max-width: 768px) {
+    margin: 1.5rem 1rem 4rem 1rem;
+    padding: 1rem 1.5rem;
+  }
+  @media (max-width: 480px) {
+    margin: 1rem 0.5rem 3rem 0.5rem;
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* En-tête du formulaire (logo + titre) */
+.form-header {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+
+  .form-logo {
+    width: 3.75rem; // Taille du logo (60px)
+  }
+}
+
+/* Contenu du formulaire */
+.form-contact {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+  }
+
+  input,
+  textarea {
+    padding: 0.5rem 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.75rem;
+    font-size: 0.95rem;
+    background-color: #d9d9d9; // Fond gris clair
+    color: #333;
+  }
+
+  textarea {
+    resize: vertical; // Redimensionnement uniquement en hauteur
+  }
+}
+
+/* =======================
+   CTA (Bouton aller à la liste)
+   ======================= */
+.go-to-list-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.btn-go-to-list {
+  background-color: #0074C7;     // Bleu vif
+  color: white;
+  padding: 1.25rem 3rem;
+  border-radius: 3rem;           // Forme arrondie
+  font-size: 1.375rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 2rem;
+  transition: all 0.4s ease;
+  box-shadow: 0 0.5rem 1rem rgba(0, 116, 199, 0.3);
+
+  &:hover {
+    background-color: #00497C; // Bleu foncé
+    transform: scale(1.12);    // Zoom léger
+    box-shadow: 0 0.8rem 1.5rem rgba(0, 73, 124, 0.5);
+    animation: pulse 1.2s infinite; // Animation continue
+  }
+
+  &:active {
+    transform: scale(0.95); // Réduction au clic
+  }
+}
+
+/* =======================
+   ANIMATION PULSE
+   ======================= */
+@keyframes pulse {
+  0% {
+    transform: scale(1.12);
+    box-shadow: 0 0.8rem 1.5rem rgba(0, 73, 124, 0.5);
+  }
+  50% {
+    transform: scale(1.18); // Zoom maximal
+    box-shadow: 0 1.2rem 2rem rgba(0, 116, 199, 0.7);
+  }
+  100% {
+    transform: scale(1.12);
+    box-shadow: 0 0.8rem 1.5rem rgba(0, 73, 124, 0.5);
+  }
+}

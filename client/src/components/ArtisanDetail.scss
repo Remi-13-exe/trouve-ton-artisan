@@ -1,0 +1,253 @@
+// Import du fichier principal SCSS pour hériter des variables globales, mixins, et fonctions
+@import "../index.scss";
+
+/* =========================
+   PAGE DETAIL ARTISAN
+========================= */
+.artisan-detail-page {
+  max-width: 900px;                    // Limite la largeur du conteneur pour éviter que le contenu s'étale trop sur grands écrans
+  margin: 10rem auto 10rem auto;       // Centre le conteneur horizontalement et ajoute 10rem de marge en haut et en bas pour l'espacement
+  padding: 2rem;                        // Crée un espace interne pour que le contenu ne touche pas les bords
+  background: #fff;                     // Fond blanc pour détacher la section du background général
+  border-radius: 1rem;                  // Coins arrondis pour un look plus moderne et doux
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); // Ombre légère pour donner un effet de profondeur et "flottant"
+  text-align: center;                   // Centre tout le texte à l'intérieur de ce conteneur
+  animation: fadeIn 0.6s ease-out;      // Animation d'apparition douce lors du chargement
+
+  /* Titre principal */
+  h1 {
+    font-size: 2rem;                    // Taille du texte du titre
+    color: $primary-color;              // Couleur principale définie dans variables SCSS
+    margin-bottom: 1.5rem;              // Espace en dessous du titre pour séparer du contenu suivant
+  }
+
+  /* Image de l'artisan */
+  .artisan-photo {
+    width: 100%;                         // S'adapte à la largeur du conteneur parent
+    max-width: 350px;                     // Limite maximale pour ne pas être trop large sur grands écrans
+    height: auto;                         // Garde les proportions de l'image
+    border-radius: 0.75rem;               // Coins arrondis pour harmoniser avec le conteneur
+    margin-bottom: 1.5rem;                // Espace sous l'image
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); // Ombre douce sous l'image pour profondeur
+    object-fit: cover;                    // Coupe l'image pour remplir le conteneur sans déformation
+  }
+
+  /* Note / étoiles */
+  .note {
+    font-size: 1.25rem;                   // Taille légèrement supérieure pour mettre en valeur
+    margin-bottom: 1rem;                  // Espace sous la note
+    color: #ffb400;                       // Couleur dorée pour symboliser les étoiles / notation
+  }
+
+  /* Paragraphes et textes */
+  p {
+    font-size: 1rem;                      // Taille standard pour le texte lisible
+    margin: 0.75rem 0;                    // Marge verticale entre les paragraphes
+    line-height: 1.6;                     // Hauteur de ligne pour améliorer la lisibilité
+    color: #333;                           // Couleur gris foncé pour un contraste agréable
+
+    strong {
+      color: $accent-color;               // Accentue certains mots importants
+    }
+
+    a {
+      color: $primary-color;              // Lien avec couleur principale
+      text-decoration: underline;         // Indique qu'il s'agit d'un lien
+      &:hover {
+        color: $accent-color;             // Changement de couleur au survol pour interaction visuelle
+      }
+    }
+  }
+
+  /* Bouton de contact */
+  .btn-contact {
+    margin-top: 1.5rem;                   // Espace au-dessus du bouton
+    padding: 0.6rem 1.5rem;               // Padding interne pour zone cliquable confortable
+    background-color: $primary-color;     // Couleur principale pour bouton
+    color: #fff;                           // Texte en blanc pour contraste
+    border: none;                          // Supprime les bordures par défaut
+    border-radius: 0.5rem;                 // Coins arrondis pour style moderne
+    cursor: pointer;                       // Curseur main pour indiquer cliquable
+    transition: background-color 0.3s;    // Animation douce au changement de couleur
+
+    &:hover {
+      background-color: $accent-color;    // Couleur différente au survol pour feedback visuel
+    }
+  }
+
+  /* Section "à propos" de l'artisan */
+  .artisan-about {
+    margin-top: 2rem;                      // Sépare de la partie supérieure
+    text-align: left;                      // Texte aligné à gauche pour meilleure lisibilité
+
+    h2 {
+      font-size: 1.5rem;                   // Sous-titre de la section
+      margin-bottom: 1rem;                 // Espace en dessous
+      color: $primary-color;               // Couleur principale pour cohérence visuelle
+    }
+
+    p {
+      font-size: 1rem;                      // Texte standard
+      line-height: 1.6;                     // Ligne aérée
+    }
+  }
+}
+
+/* =========================
+   POPUP CONTACT
+========================= */
+.contact-modal {
+  position: fixed;                          // Toujours visible sur l'écran
+  top: 0; left: 0;
+  width: 100%; height: 100%;                // Couvre tout l'écran
+  background: rgba(0,0,0,0.5);              // Fond semi-transparent pour mettre en avant le modal
+  display: flex;                            // Flexbox pour centrer contenu
+  justify-content: center;                  // Centre horizontalement
+  align-items: center;                      // Centre verticalement
+  z-index: 2000;                            // Toujours au-dessus des autres éléments
+  animation: fadeIn 0.4s ease-out;          // Apparition douce du modal
+}
+
+.contact-form {
+  background: #fff;                          // Fond blanc pour formulaire
+  padding: 2rem;                             
+  border-radius: 0.75rem;                     // Coins arrondis
+  width: 90%;                                 // Largeur adaptable
+  max-width: 450px;                           // Limite maximale sur grands écrans
+  position: relative;
+  margin: auto;                               // Centré horizontalement
+
+  /* Header du formulaire */
+  .form-header {
+    display: flex;                            
+    justify-content: space-between;           // Logo à gauche, bouton fermer à droite
+    align-items: center;                      
+    margin-bottom: 1rem;                      // Espace sous le header
+
+    .form-logo {
+      width: 80px;                             // Taille du logo
+      height: auto;
+    }
+
+    .btn-close {
+      background: transparent;                 // Bouton sans fond
+      border: none;                            
+      font-size: 1.25rem;                      
+      cursor: pointer;                          // Curseur pointer pour indiquer action
+    }
+  }
+
+  /* Formulaire de contact */
+  .form-contact {
+    display: flex;
+    flex-direction: column;                   // Champ par champ verticalement
+    gap: 0.75rem;                             // Espacement entre les champs
+
+    label {
+      font-weight: 500;                        // Texte semi-bold pour lisibilité
+      text-align: left;                        // Aligne les labels à gauche
+    }
+
+    input, textarea {
+      padding: 0.5rem;                         
+      border-radius: 0.375rem;                 
+      border: 1px solid #ccc;                  
+      font-size: 0.9rem;                       
+      width: 100%;                              // S'adapte à la largeur du conteneur
+      box-sizing: border-box;                   // Important pour que padding ne casse pas la largeur
+    }
+
+    .btn-send {
+      margin-top: 0.5rem;                      
+      background-color: $primary-color;        
+      color: white;                             
+      padding: 0.5rem 1rem;                    
+      border-radius: 0.5rem;                    
+      border: none;                             
+      cursor: pointer;                          
+      transition: 0.3s;                         
+
+      &:hover {
+        background-color: $accent-color;       // Retour visuel au hover
+      }
+    }
+  }
+}
+
+/* =========================
+   RESPONSIVE TABLETTE
+========================= */
+@media (max-width: 1024px) {
+  .artisan-detail-page {
+    padding: 1.5rem;                          // Réduction padding pour tablette
+
+    h1 {
+      font-size: 1.75rem;                      // Titre légèrement plus petit
+    }
+
+    .artisan-photo {
+      max-width: 280px;                        // Photo réduite pour écran tablette
+    }
+
+    .artisan-about h2 {
+      font-size: 1.35rem;                      
+    }
+  }
+
+  .contact-form {
+    padding: 1.5rem;                          
+
+    input, textarea {
+      font-size: 0.9rem;                      
+      padding: 0.45rem;                        
+    }
+  }
+}
+
+/* =========================
+   RESPONSIVE MOBILE
+========================= */
+@media (max-width: 768px) {
+  .artisan-detail-page {
+    padding: 1rem;                            
+
+    h1 {
+      font-size: 1.5rem;                       // Titre plus petit pour mobile
+    }
+
+    p {
+      font-size: 0.95rem;                      
+    }
+
+    .artisan-photo {
+      max-width: 220px;                        
+    }
+
+    .artisan-about h2 {
+      font-size: 1.25rem;                      
+    }
+  }
+
+  .contact-form {
+    padding: 1rem;                              
+
+    input, textarea {
+      font-size: 0.85rem;                       
+      padding: 0.4rem;                          
+    }
+  }
+}
+
+/* =========================
+   ANIMATION FADE-IN
+========================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;                                
+    transform: translateY(15px);               // Démarre légèrement en dessous pour effet de glissement
+  }
+  to {
+    opacity: 1;                                
+    transform: translateY(0);                  // Fini à sa position normale
+  }
+}

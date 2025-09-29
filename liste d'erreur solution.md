@@ -80,9 +80,9 @@
 
 
 
-**From: Magic Elves <from@example.com>**
+**From: Magic Elves** [**from@example.com**](mailto:from@example.com)
 
-**To: Mailtrap Sandbox <to@example.com>5**
+**To: Mailtrap Sandbox** [**to@example.com**](mailto:to@example.com)**5**
 
 **Subject: Test Mailtrap via curl**
 
@@ -107,4 +107,46 @@
 
 
 **Bien réécrire et importer les middlewares dans l’ordre correct.**
+
+
+
+
+
+**mon import a 0 erreur mais affiche rien sur le npm start :**
+
+
+
+**verifier le console log pour trouver lerreur mais souvent du a la cause de faux import**
+
+
+
+
+
+\*\*comment appeler  une base de donne et eviter que  ca bug
+
+
+
+Charger l’environnement • require('dotenv').config() en haut de ton index.js..\*\*
+
+
+
+**Chemins relatifs stricts • Si tes sources sont dans api/src, importe toujours avec require('./src/…').**
+
+
+
+**Ordre des middlewares • 1) CORS (autoriser X-API-KEY) • 2) apiKeyMiddleware • 3) routes • 4) errorHandler**
+
+
+
+**Modèles Sequelize ↔ DB • Champs du modèle = colonnes réelles (pas de “prenom” si inexistant) • Teste la connexion avec await sequelize.authenticate() + console.log**
+
+
+
+**Front ↔ API • fetch('http://localhost:5000/api/…', { headers: { 'x-api-key': '…' } }) • .then(res=>res.json()).catch(err=>console.error(err))**
+
+
+
+
+
+**comment replacer la barre de recherche qui se barre quand on met le responsive** 
 

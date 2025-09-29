@@ -1,0 +1,256 @@
+/* ================================
+   PAGE LISTE DES ARTISANS
+================================ */
+
+/* Conteneur principal de la page */
+.artisan-list-page {
+  padding: 2rem; /* espace intérieur global pour aérer le contenu */
+}
+
+/* Bloc d’en-tête contenant le titre + menu catégories */
+.list-header {
+  margin-bottom: 3rem; /* espace après l’en-tête */
+}
+
+/* Wrapper qui aligne le titre et le menu catégorie côte à côte */
+.title-category-wrapper {
+  display: flex;                 /* mise en page en ligne (flexbox) */
+  align-items: center;           /* verticalement centré */
+  justify-content: flex-start;   /* alignement à gauche */
+  gap: 4rem;                     /* espace horizontal entre les éléments */
+  margin-top: 12rem;             /* gros espace au-dessus */
+  margin-bottom: 17rem;          /* gros espace en-dessous */
+  margin-left: 13rem;            /* décalage vers la droite */
+}
+
+/* Titre principal de la page */
+.list-title {
+  font-size: 4.6rem;  /* très grand texte */
+  color: #0074C7;     /* bleu corporate */
+  font-weight: 900;   /* extra-bold */
+  margin: 0;          /* supprime les marges par défaut */
+}
+
+/* ================================
+   MENU CATÉGORIES (dropdown)
+================================ */
+
+/* Conteneur global du menu déroulant */
+.category-menu {
+  position: relative;   /* nécessaire pour positionner les options en absolu */
+  display: inline-block;
+  margin-bottom: 1rem;
+  width: fit-content;   /* largeur ajustée au contenu */
+}
+
+/* Bouton principal du menu (celui visible avant clic) */
+.main-button {
+  background-color: #0074C7; /* fond bleu */
+  color: white;             /* texte blanc */
+  border: none;             /* pas de bordure */
+  padding: 1rem 2rem;       /* espaces intérieurs */
+  font-size: 1.25rem;
+  border-radius: 2.5rem;    /* coins arrondis (style pill button) */
+  font-weight: 700;         /* texte gras */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* effet smooth */
+
+  margin-top: 0.5rem;
+  outline: none;
+  box-shadow: none;
+
+  /* Effet au survol */
+  &:hover {
+    background-color: #005fa3; /* bleu foncé */
+    transform: translateY(-2px); /* petit effet de soulèvement */
+  }
+
+  /* État focus (accessibilité clavier) */
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+/* Liste des options du menu (affichées au clic) */
+.category-options {
+  position: absolute;   /* placé par rapport à .category-menu */
+  top: 3.8rem;          /* descend sous le bouton principal */
+  left: 0;
+  display: flex;
+  flex-direction: column; /* options en colonne */
+  gap: 0.3rem;           /* espace entre les boutons */
+  padding: 0.75rem 0.7rem;
+  border-radius: 0.75rem;
+  z-index: 100;          /* pour passer au-dessus des autres éléments */
+
+  /* Animation d’apparition (hidden par défaut) */
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;  /* désactivé tant qu’invisible */
+  transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+  width: 90%;
+  max-width: 250px;
+}
+
+/* Quand la classe .open est ajoutée → le menu devient visible */
+.category-options.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Boutons individuels dans le menu */
+.category-options button {
+  background-color: #0074C7;
+  color: white;
+  border: none;
+  padding: 0.5rem 0;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.2s;
+
+  outline: none;
+  box-shadow: none;
+
+  &:hover {
+    background-color: #00497C;
+    transform: translateY(-2px);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+/* ================================
+   GRILLE DES ARTISANS
+================================ */
+
+/* Conteneur de la grille (responsive) */
+.artisan-grid {
+  display: grid; /* permet une disposition flexible en colonnes */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;      /* espace entre les cartes */
+  margin-top: 3rem;
+}
+
+/* Carte individuelle d’un artisan */
+.artisan-card {
+  background-color: #f9f9f9; /* fond gris clair */
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* ombre légère */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  /* Effet au survol : "sortie 3D" */
+  &:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* Zone image de la carte artisan */
+.artisan-photo img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;     /* évite la déformation */
+  margin-bottom: 0.8rem;
+  border-radius: 0.375rem;
+}
+
+/* Bouton "Voir le profil" sous chaque artisan */
+.btn-profile {
+  margin-top: 0.8rem;
+  background-color: #0074C7;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 1.25rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.2s;
+
+  outline: none;
+  box-shadow: none;
+  text-decoration: none; /* utile si le bouton est un lien <a> */
+
+  &:hover {
+    background-color: #00497C;
+    transform: translateY(-1px);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+
+/* Tablette (<= 1024px) */
+@media (max-width: 1024px) {
+  .title-category-wrapper {
+    margin-top: 8rem;
+    margin-bottom: 10rem;
+    margin-left: 5rem;
+    gap: 2rem;
+  }
+
+  .list-title {
+    font-size: 3.2rem;
+  }
+}
+
+/* Mobile (<= 768px) */
+@media (max-width: 768px) {
+  .title-category-wrapper {
+    flex-direction: column;    /* titre au-dessus du menu */
+    align-items: flex-start;   /* alignement à gauche */
+    margin-top: 6rem;
+    margin-left: 2rem;
+    margin-bottom: 6rem;
+    gap: 1.5rem;
+  }
+
+  .list-title {
+    font-size: 2.5rem;
+    text-align: left;
+  }
+
+  .main-button {
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+/* Très petit mobile (<= 480px) */
+@media (max-width: 480px) {
+  .title-category-wrapper {
+    margin-top: 4rem;
+    margin-left: 1rem;
+    margin-bottom: 4rem;
+    gap: 1rem;
+  }
+
+  .list-title {
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .category-menu {
+    width: 100%; /* le menu prend toute la largeur */
+  }
+
+  .main-button {
+    width: 100%;
+    text-align: center;
+  }
+}

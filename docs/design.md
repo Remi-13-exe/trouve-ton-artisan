@@ -6,7 +6,7 @@
 
 ## 🎨 Palette de couleurs 
 
-Bleu très clair	#f1f8fc	Fond de page, arrière-plan léger
+Bleu très clair	#f1f8fc,* #fff	Fond de page, arrière-plan léger
 Bleu vif	#0074c7	Boutons principaux, liens actifs
 Bleu foncé	#00497c	Titres, header, footer
 Gris foncé	#384050	Texte principal, icônes, paragraphes

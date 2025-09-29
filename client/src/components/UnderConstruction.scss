@@ -1,0 +1,123 @@
+/* ================================
+   CONTENEUR PRINCIPAL UNDER CONSTRUCTION
+==================================== */
+.underconstruction-container {
+  width: 100%; /* prend toute la largeur */
+  min-height: 100vh; /* prend toute la hauteur de l'écran */
+  padding: 2rem; /* espacement interne */
+  display: flex; /* centrer le contenu avec flex */
+  justify-content: center; /* centre horizontalement */
+  align-items: center; /* centre verticalement */
+  text-align: center; /* centre le texte */
+  box-sizing: border-box; /* padding inclus dans la largeur */
+  margin: 0 auto; /* centre le conteneur */
+
+  /* Animation fade-in */
+  opacity: 0;
+  animation: pageFadeIn 0.8s ease-in-out forwards;
+
+  @media (max-width: 1024px) {
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    flex-direction: column;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.5rem;
+  }
+}
+
+/* Animation fade-in du conteneur */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   CONTENU DE LA PAGE UNDER CONSTRUCTION
+==================================== */
+.underconstruction-content {
+  max-width: 700px;
+  width: 100%;
+  padding: 3rem;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 1rem 2rem rgba(0,0,0,0.15);
+  margin: 0 auto;
+
+  /* Animation fade-in avec léger zoom */
+  opacity: 0;
+  animation: contentFadeIn 1s ease-in-out forwards;
+  animation-delay: 0.1s;
+
+  @media (max-width: 1024px) {
+    padding: 2.5rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
+}
+
+/* Animation fade-in avec zoom */
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ================================
+   BOUTON RETOUR / CTA
+==================================== */
+.btn-custom {
+  background-color: #0074C7;
+  color: white;
+  padding: 1.25rem 3rem;
+  border-radius: 3rem;
+  font-size: 1.375rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  display: inline-block;
+  margin: 2rem auto 0 auto; /* centre le bouton */
+  box-shadow: 0 0.5rem 1rem rgba(0, 116, 199, 0.3);
+
+  &:hover {
+    background-color: #005fa3;
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 116, 199, 0.4);
+  }
+
+  @media (max-width: 1024px) {
+    padding: 1rem 2.5rem;
+    font-size: 1.25rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.85rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+}

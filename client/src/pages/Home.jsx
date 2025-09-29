@@ -1,54 +1,80 @@
-import artisanExemple from '../assets/artisan-exemple.jpg';
-import logo from '../assets/Logo.png';
+// ===============================
+// Home.jsx
+// Page d'accueil expliquant le processus pour trouver un artisan
+// ===============================
 
+import artisanExemple from '../assets/artisan-exemple.jpg'; // Image exemple pour les cartes artisan
+import logo from '../assets/Logo.png'; // Logo de l'application
+import ArtisansDuMois from "../components/ArtisansDuMois"; // Composant pour afficher les artisans du mois
+import '../components/Home.scss'; // Styles spécifiques à la page Home
+
+// ===============================
+// Composant Home
+// ===============================
 const Home = () => {
   return (
-    <div className="page-container">
-      <h1 className="titre-principal">Comment trouver mon artisan</h1>
+    <div className="page-container fade-in">
+      {/* Conteneur principal de la page */}
 
-      <div className="home-container">
-        <h3>Étape 1.</h3>
-        <p>
-          Sélectionnez une des grandes familles d’artisans : Bâtiment, Services, Fabrication ou Alimentation.
-        </p>
+      <div className="page-container">
+        {/* Titre principal de la page */}
+        <h1 className="titre-principal">Comment trouver mon artisan</h1>
 
-        <div className="category-wrapper">
-          <button className="btn-category">
-            Choisir une catégorie
-            <span className="arrow-circle"></span>
-          </button>
-
-          <div className="category-list">
-            <span className="blue-line"></span>
-            <div className="buttons-vertical">
-              <button className="btn-category-simple">Bâtiment</button>
-              <button className="btn-category-simple">Services</button>
-              <button className="btn-category-simple">Fabrications</button>
-              <button className="btn-category-simple">Alimentation</button>
-            </div>
-          </div>
-        </div>
-
-        {/* Étape 2 bien alignée */}
-        <div className="category-wrapper">
-          <h3>Étape 2.</h3>
+        <div className="home-container">
+          {/* ===============================
+              Étape 1 : Choisir une catégorie
+          =============================== */}
+          <h3>Étape 1.</h3>
           <p>
-            Parcourez les profils et trouvez l’artisan qui correspond à votre besoin.
+            Sélectionnez une des grandes familles d’artisans : Bâtiment, Services, Fabrication ou Alimentation.
           </p>
 
-          <div className="artisan-grid">
-            {[...Array(6)].map((_, index) => (
-              <div className="artisan-card" key={index}>
-                <img
-                  src={artisanExemple}
-                  alt={`Artisan ${index + 1}`}
-                  className="artisan-img"
-                />
-                <button className="btn-profile">Artisan</button>
+          <div className="category-wrapper">
+            {/* Bouton principal pour choisir la catégorie */}
+            <button className="btn-category">
+              Choisir une catégorie
+              <span className="arrow-circle"></span> {/* Flèche indiquant menu */}
+            </button>
+
+            {/* Liste des catégories disponibles */}
+            <div className="category-list">
+              <span className="blue-line"></span> {/* Ligne verticale décorative */}
+              <div className="buttons-vertical">
+                <button className="btn-category-simple">Bâtiment</button>
+                <button className="btn-category-simple">Services</button>
+                <button className="btn-category-simple">Fabrications</button>
+                <button className="btn-category-simple">Alimentation</button>
               </div>
-            ))}
+            </div>
           </div>
 
+          {/* ===============================
+              Étape 2 : Parcourir les profils
+          =============================== */}
+          <div className="category-wrapper">
+            <h3>Étape 2.</h3>
+            <p>
+              Parcourez les profils et trouvez l’artisan qui correspond à votre besoin.
+            </p>
+
+            <div className="artisan-grid">
+              {/* Exemple de 6 artisans affichés */}
+              {[...Array(6)].map((_, index) => (
+                <div className="artisan-card" key={index}>
+                  <img
+                    src={artisanExemple}
+                    alt={`Artisan ${index + 1}`}
+                    className="artisan-img"
+                  />
+                  <button className="btn-profile">Artisan</button>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ===============================
+              Étape 3 : Accéder à la fiche complète
+          =============================== */}
           <div className="category-wrapper">
             <h3>Étape 3.</h3>
             <p>
@@ -56,25 +82,33 @@ const Home = () => {
             </p>
 
             <div className="artisan-profile">
+              {/* Photo de l'artisan */}
               <img
                 src={artisanExemple}
                 alt="Pierre & Bois – Atelier d’ébénisterie"
                 className="artisan-profile-img"
               />
 
+              {/* Détails de l'artisan */}
               <div className="artisan-details">
                 <p><strong className="artisan-title">Pierre & Bois – Atelier d’ébénisterie</strong></p>
                 <p>⭐⭐⭐⭐⭐ (5/5)</p>
                 <p>Spécialisé dans la création de mobilier sur mesure, restauration de meubles anciens, design contemporain</p>
                 <p>Localisation : Marseille, France</p>
                 <p>A propos : Atelier marseillais fondé en 2009. Créations artisanales uniques, mêlant tradition et design moderne.</p>
-                <p><a href="https://www.pierreetbois.fr" target="_blank" rel="noopener noreferrer">www.pierreetbois.fr</a></p>
+                <p>
+                  <a href="https://www.pierreetbois.fr" target="_blank" rel="noopener noreferrer">
+                    www.pierreetbois.fr
+                  </a>
+                </p>
                 <button className="btn-contact">Contacter</button>
               </div>
 
+              {/* Flèche décorative illustrant la progression */}
               <div className="arrow-long"></div>
 
-              <div className="contact-form">
+              {/* Formulaire de contact */}
+              <div className="contact-form-ex">
                 <div className="form-header">
                   <img src={logo} alt="Logo" className="form-logo" />
                 </div>
@@ -96,49 +130,34 @@ const Home = () => {
                 </form>
               </div>
             </div>
+          </div>
 
+          {/* ===============================
+              Étape 4 : Réponse de l'artisan
+          =============================== */}
+          <div className="category-wrapper">
             <h3>Étape 4.</h3>
             <p>
-              Une fois votre message envoyé, l’artisan vous reviendra personnellement avec une réponse sous 48h. On vous laisse entre de bonnes mains
+              Une fois votre message envoyé, l’artisan vous reviendra personnellement avec une réponse sous 48h. On vous laisse entre de bonnes mains.
             </p>
+          </div>
 
+          {/* ===============================
+              Section artisans du mois
+          =============================== */}
+          <ArtisansDuMois />
 
+          {/* CTA pour aller à la liste complète des artisans */}
+          <div className="go-to-list-wrapper">
+            <a href="/liste-artisans" className="btn-go-to-list">
+              Allons trouver votre artisan !
+            </a>
           </div>
         </div>
- 
-     </div>
-     
-    <div className="Artisan-of-the-month">
-  <h3>Artisan du mois</h3>
-
-<div className="artisan-of-the-month">
-  <h2>Artisan du mois</h2>
-  <div className="artisan-grid">
-    {[...Array(3)].map((_, index) => (
-      <div className="artisan-card" key={index}>
-      <img
-                  src={artisanExemple}
-                  alt={`Artisan ${index + 1}`}
-                  className="artisan-img"
-                />
-        <h3>Artisan numero {index + 1}</h3>
-     
-     
-     
       </div>
-
-    ))}
-  </div>
-</div>
-
-
-            
-      </div>
-
-
     </div>
-
   );
 };
 
+// Export du composant pour utilisation dans App.js
 export default Home;

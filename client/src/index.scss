@@ -1,385 +1,178 @@
-$primary-color: #123456;
-$secondary-color: #ffffff;
-$font-family: 'Graphik', sans-serif;
+/* ===============================
+   VARIABLES GLOBALES
+   =============================== */
+$primary-color: #123456;        // Couleur principale du site
+$secondary-color: #ffffff;      // Couleur de fond / secondaire
+$accent-color: #0074C7;         // Couleur accentuée (boutons, liens)
+$dark-accent: #00365c;          // Variante plus foncée de l’accent
+$font-family: 'Graphik', sans-serif; // Police principale
 
+$base-spacing: 1rem;            // Unité de base pour les marges/paddings
+
+/* ===============================
+   RESET & STYLES DE BASE
+   =============================== */
 body {
-  font-family: $font-family;
-  background-color: $secondary-color;
+  font-family: $font-family;     // Applique la police globale
+  background-color: $secondary-color; // Fond blanc
+  margin: 0;                     // Supprime les marges par défaut
+  padding: 0;                    // Supprime le padding par défaut
+  line-height: 1.6;              // Hauteur de ligne confortable
 }
 
-.titre-principal {
-  text-align: center;
-  color: #00497c;
-  font-weight: 800; /* bien gras */
-  font-size: 70px; /* optionnel, pour le rendre plus imposant */
-  margin-top: 20rem;
-  margin-bottom: 15rem;
+html, body {
+  height: 100%;                  // Pour que la page remplisse tout l’écran
+  display: flex;                 // Utilisation du flex pour structure globale
+  flex-direction: column;
 }
-
-
-
-
-.custom-header {
-  padding: 0.5rem 1rem;
-  background-color: #fff;
-}
-
-.logo {
-  margin-top: -45px; // remonte légèrement le logo
-  margin-left: -30px; // colle un peu plus à gauche
-  transition: all 0.3s ease-in-out;
-}
-
 
 .page-container {
-  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100vh;             // Prend toute la hauteur de la page
+  margin-bottom: 2.5rem;
+  padding: 0 1rem;
+  animation: fadeIn 1.2s ease-in-out; // Animation d’apparition globale
 }
 
-p {
-  margin-bottom: 110px;
+/* ===============================
+   ANIMATIONS GLOBALES
+   =============================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 1s ease-out forwards; // Classe utilitaire pour fade-in
+}
+
+/* ===============================
+   TITRES GLOBAUX
+   =============================== */
+.titre-principal {
+  text-align: center;
+  color: $accent-color;
+  font-weight: 800;
+  font-size: 4.375rem;
+  margin: 20rem 0 15rem 0;
+  animation: zoomIn 1.2s ease forwards;
+
+  @media (max-width: 1200px) {
+    font-size: 3.5rem;
+    margin: 15rem 0 10rem 0;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+    margin: 10rem 0 8rem 0;
+  }
+
+  // Effet hover dynamique sur le titre
+  &:hover {
+    color: darken($accent-color, 10%);
+    transform: scale(1.03);
+    transition: all 0.3s ease;
+  }
+}
+
+/* ===============================
+   LOGO
+   =============================== */
+.logo {
+  margin-top: -2.8125rem;
+  margin-left: -1.875rem;
+  transition: transform 0.4s ease, filter 0.4s ease;
+
+  // Hover : rotation et léger zoom + ombre portée
+  &:hover {
+    transform: rotate(-3deg) scale(1.05);
+    filter: drop-shadow(0 0 10px rgba($accent-color, 0.5));
+  }
+
+  @media (max-width: 768px) {
+    margin-top: -1.5rem;
+    margin-left: 0;
+    width: 6rem;
+  }
+}
+
+/* ===============================
+   ARTISAN DU MOIS
+   =============================== */
 .artisan-of-the-month {
   text-align: center;
-  margin: 50px auto;
-}
+  margin: 3rem auto 2rem auto;
+  animation: slideIn 1.2s ease;
 
-.artisan-of-the-month h2 {
-  color: #00497c;
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 30px;
-}
+  h2 {
+    margin-bottom: 7rem;
+    color: $accent-color;
+    font-size: 2rem;
+    font-weight: 900;
+    position: relative;
+    display: inline-block;
 
+    // Soulignement animé au hover
+    &::after {
+      content: "";
+      display: block;
+      height: 4px;
+      width: 0%;
+      background: $accent-color;
+      margin: 0.5rem auto 0 auto;
+      transition: width 0.5s ease;
+    }
 
-.artisan-card {
-  border-radius: 12px;
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.2s ease;
-}
+    &:hover::after {
+      width: 100%;
+    }
 
-.artisan-card h3{
-  color: #0074C7
-}
-
-
-
-
-
-
-.Artisan-of-the-month h2  {
-    color: #00497c;
-      font-size: 70px; /* optionnel, pour le rendre plus imposant */
-margin-bottom: 360px;
-margin-top: 370px;
-  font-weight: 800;     /* met le texte en gras */
-}
-
-
-
-
-.home-container h3  {
-    color: #00497c;
-      font-size: 28px; /* optionnel, pour le rendre plus imposant */
-margin-bottom: 50px;
-
-}
-
-
-.home-container {
-  margin-left: 250px;
-}
-
-
-.category-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 15px;
-}
-
-/* Bouton principal avec flèche */
-.btn-category {
-  background-color: #0074C7;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  padding: 10px 20px;
-  font-size: 16px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.btn-category:hover {
-  background-color: #005fa3;
-}
-
-/* Cercle avec flèche */
-.arrow-circle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: white;
-  position: relative;
-}
-.arrow-circle::after {
-  content: '';
-  width: 0;
-  height: 0;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid #0074C7;
-  position: absolute;
-}
-
-/* Liste verticale avec barre */
-.category-list {
-  display: flex;
-  align-items: flex-start;
-  gap: 5px;
-  position: relative;
-  margin-bottom: 80px;
-}
-
-/* Barre verticale */
-.blue-line {
-  width: 2px;
-  background-color: #0074C7;
-  border-radius: 2px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-}
-
-/* Conteneur des boutons verticaux */
-.buttons-vertical {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-left: 20px; /* espace par rapport à la barre */
-}
-
-/* Boutons simples */
-.btn-category-simple {
-  background-color: #0074C7;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.btn-category-simple:hover {
-  background-color: #005fa3;
-}
-.artisan-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); // ← 3 colonnes par ligne
-  gap: 2rem;
-  margin-top: 2rem;
-  margin-left: 95px;
-  margin-bottom: 80px;
-
-  
-}
-
-.artisan-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-  border-radius: 8px;
-}
-
-.artisan-img {
-  width: 100%;
-  max-width: 200px;
-  height: auto;
-  border-radius: 6px;
-  margin-bottom: 1rem;
-}
-
-.btn-profile {
-  background-color: #0074C7;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 20px; // ← bouton plus arrondi
-  cursor: pointer;
-  font-weight: 500;
-    min-width: 95px; // ← garantit une largeur minimale
-  transition: background-color 0.2s ease;
-
-  &:hover {
-    background-color: #00365c;
-  }
-}
-
-.artisan-profile {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; // ← aligne tout à gauche
-  margin-top: 2rem;
-  padding: 1.5rem;
-  max-width: 300px;
-  margin-left: 95px;
-}
-
-.artisan-profile-img {
-  width: 100%;
-  max-width: 250px;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
-.artisan-details {
-  text-align: left; // ← aligne le texte à gauche
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: #333;
-
-  p {
-    margin: 0.5rem 0;
-  }
-
-  a {
-    color: #0074C7;
-    text-decoration: none;
-    font-weight: 500;
-
-    &:hover {
-      text-decoration: underline;
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
     }
   }
 }
 
+/* ===============================
+   PARAGRAPHES
+   =============================== */
+p {
+  margin-bottom: 6.875rem;       // Espacement global entre paragraphes
+  animation: fadeIn 1.4s ease;   // Fade-in progressif
 
-
-.artisan-title {
-  color: #00497C;
-  font-weight: bold;
-  font-size: 1rem;
-}
-
-.btn-contact {
-  margin-bottom: 10px;
-  margin-top: 3rem;
-  background-color: #0074C7;
-  color: white;
-  border: none;
-  padding: 0.4rem 1rem;
-  border-radius: 16px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  font-weight: 600;
-    letter-spacing: 0.5px; /* très léger */
-  transition: background-color 0.2s ease;
-
-  &:hover {
-    background-color: #00365c;
-  }
-}
-
-.arrow-long {
-  position: relative;
-  width: 500px;   /* ← longueur de la barre (tu changes ça) */
-  height: 2px;    /* épaisseur de la barre */
-  background-color: black;
-  transform: rotate(53.91deg);
-margin: 240px 320px 320px 140px;
-}
-
-.arrow-long::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%) rotate(45deg);
-  border-top: 2px solid black;
-  border-right: 2px solid black;
-  width: 10px;
-  height: 10px;
-}
-
-
-.contact-form {
-
-    display: flex;
-  flex-direction: column;
-  width: 100%;           /* occupe toute la largeur possible */
-  max-width: 700px;    
-  margin: 3rem auto;
-  padding: 2.5rem;
-  background-color: #f9f9f9;
-  border-radius: 14px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-left: 600px;
-}
-
-.form-header {
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 2rem;
-  
-}
-
-.form-logo {
-  width: 60px;
-  height: auto;
-}
-
-.form-contact {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-contact label {
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #333;
-}
-
-.form-contact input,
-.form-contact textarea {
-  padding: 0.8rem 1rem;
-  margin-bottom: 1.5rem;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  background-color: #D9D9D9;
-  color: #333;
-}
-
-.form-contact textarea {
-  resize: vertical;
-}
-
-.btn-send {
-  background-color: #0074C7;
-  color: white;
-  border: none;
-  padding: 0.7rem 1.4rem;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-
-  &:hover {
-    background-color: #00497C;
+  @media (max-width: 768px) {
+    margin-bottom: 3rem;         // Réduction du spacing sur mobile
   }
 }

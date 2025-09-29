@@ -1,62 +1,229 @@
-
-
-
-/* Structure de base de la page */
+/* ============================
+   STRUCTURE DE BASE DE LA PAGE
+============================ */
 html, body {
-  height: 100%;            /* occupe toute la hauteur */
-  margin: 0;               /* supprime marges par défaut */
-  display: flex;
-  flex-direction: column;  /* empile header, main, footer */
+  height: 100%; // la page occupe toute la hauteur de l’écran
+  margin: 0; // supprime les marges par défaut des navigateurs
+  display: flex; // active Flexbox sur le conteneur global
+  flex-direction: column; // disposition verticale : header -> main -> footer
+  font-family: Arial, sans-serif; // police de caractères par défaut
 }
 
-/* Contenu principal qui pousse le footer */
 main {
-  flex: 1; /* prend tout l’espace dispo avant le footer */
+  flex: 1; // occupe tout l’espace disponible entre header et footer
 }
 
-/* Footer */
+/* ============================
+   NAVBAR (Barre de navigation)
+============================ */
+header {
+  width: 100%; // header prend toute la largeur de la page
+}
+
+.navbar {
+  display: flex; // active flexbox pour aligner logo et liens
+  justify-content: space-between; // logo à gauche et menu à droite
+  align-items: center; // alignement vertical centré
+  padding: 1rem 3rem; // espace interne haut/bas et gauche/droite
+  background-color: #00497C; // couleur de fond bleu foncé
+  color: white; // couleur du texte par défaut
+  position: relative; // permet de positionner le menu burger en absolu plus tard
+}
+
+.navbar .logo {
+  font-size: 1.5rem; // taille du texte du logo
+  font-weight: bold; // texte en gras
+}
+
+/* Liste des liens de navigation */
+.nav-links {
+  list-style: none; // supprime les puces de liste
+  display: flex; // liens affichés horizontalement
+  gap: 2rem; // espace horizontal entre chaque lien
+}
+
+/* Style des liens */
+.nav-links li a {
+  text-decoration: none; // supprime le soulignement
+  color: white; // texte en blanc
+  font-weight: 500; // épaisseur moyenne
+  transition: color 0.3s; // animation douce lors du changement de couleur
+}
+
+/* Effet hover sur les liens */
+.nav-links li a:hover {
+  color: #1abc9c; // change la couleur au survol (vert turquoise)
+}
+
+/* ============================
+   MENU HAMBURGER (mobile)
+============================ */
+#menu-toggle {
+  display: none; // input checkbox invisible (utilisé pour ouvrir/fermer le menu)
+}
+
+.hamburger {
+  display: none; // caché par défaut sur desktop
+  font-size: 2rem; // taille de l’icône
+  cursor: pointer; // curseur main au survol
+}
+
+/* ============================
+   FOOTER DYNAMIQUE
+============================ */
 .footer {
-  background-color: #00497C;
-  color: #fff;
-  width: 100%;            /* ✅ prend toute la largeur */
-  padding: 20px 0;
-  text-align: center;
+  background-color: #00497C; // fond bleu foncé
+  color: #fff; // texte en blanc
+  width: 100%; // occupe toute la largeur de l’écran
+  padding: 1.875rem 0; // espace haut et bas
+  text-align: center; // centre le contenu
+  position: relative; // permet d’ajouter des éléments en absolu si besoin
+  overflow: hidden; // masque tout débordement visuel
+  animation: fadeIn 1s ease-out forwards; // animation d’apparition progressive
+  transition: background-color 0.4s ease, transform 0.3s ease; // transitions douces
+
+  /* Conteneur principal du footer */
+  .footer-content {
+    display: flex; // mise en page flexible
+    flex-direction: column; // contenu empilé verticalement
+    align-items: center; // centré horizontalement
+    justify-content: center; // centré verticalement
+    gap: 1rem; // espace entre les éléments
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Liste des liens */
+  .footer-links {
+    display: flex; // liens affichés en ligne
+    flex-wrap: wrap; // retour à la ligne si trop long
+    justify-content: center; // centrage horizontal
+    gap: 1.875rem; // espace horizontal/vertical entre les liens
+    list-style: none; // supprime les puces
+    padding: 0; // supprime le padding de liste
+    margin: 0; // supprime les marges par défaut
+
+    /* Chaque lien individuel */
+    li {
+      padding: 0.3125rem 0.625rem; // petit espace autour du lien
+
+      a {
+        color: #fff; // couleur du texte blanc
+        text-decoration: none; // supprime le soulignement
+        font-size: 0.875rem; // taille du texte réduite
+        font-weight: 500; // texte semi-gras
+        padding: 0.25rem 0.5rem; // espace interne pour clic facile
+        border-radius: 0.25rem; // coins arrondis
+        transition: all 0.3s ease; // transitions douces pour hover
+
+        &:hover {
+          color: #0074C7; // couleur texte bleu clair au survol
+          background-color: rgba(0, 53, 94, 0.9); // fond bleu semi-transparent
+        }
+      }
+    }
+  }
+
+  /* Numéro de téléphone du footer */
+  .footer-phone {
+    flex-basis: 100%; // occupe toute la largeur
+    margin-top: 0.9375rem; // espace au-dessus
+    font-weight: 600; // texte en gras
+    transition: color 0.3s; // transition douce de couleur
+
+    &:hover {
+      color: #1abc9c; // change en turquoise au survol
+    }
+  }
 }
 
+/* ============================
+   RESPONSIVE DESIGN
+============================ */
 
-/* conteneur des liens */
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  list-style: none; /* ✅ supprime les puces */
-  padding: 0;
-  margin: 0;
-  gap: 50px;
+/* Tablette (≤ 48rem ~ 768px) */
+@media (max-width: 48rem) {
+  .navbar {
+    padding: 1rem 2rem; // réduit les marges internes
+  }
+
+  .footer-content {
+    padding-left: 2rem; // ajoute un peu de marge horizontale
+    padding-right: 2rem;
+  }
+
+  .footer-links {
+    gap: 1.25rem; // réduit l’espacement entre liens
+  }
 }
 
-.footer-links li {
-  display: inline-block;
-  padding: 0 20px;  /* ajoute de l’espace à gauche et à droite de chaque lien */
+/* Mobile (≤ 30rem ~ 480px) */
+@media (max-width: 30rem) {
+  .navbar {
+    padding: 1rem 1rem; // encore plus compact
+  }
 
+  /* Menu burger actif */
+  .nav-links {
+    position: absolute; // détaché du flux
+    top: 60px; // descend sous la navbar
+    right: 0; // aligné à droite
+    background-color: #00497C; // même fond que la navbar
+    flex-direction: column; // liens en colonne
+    width: 100%; // prend toute la largeur
+    max-height: 0; // caché par défaut
+    overflow: hidden; // masque le contenu
+    transition: max-height 0.3s ease-in-out; // animation ouverture
+    gap: 1rem; // espace entre liens
+  }
+
+  /* Quand la checkbox #menu-toggle est cochée, on affiche le menu */
+  #menu-toggle:checked + .hamburger + .nav-links {
+    max-height: 300px; // menu déroulé
+  }
+
+  .hamburger {
+    display: block; // icône hamburger visible
+  }
+
+  /* Ajustements du footer en mobile */
+  .footer-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .footer-links {
+    flex-direction: column; // liens empilés verticalement
+    align-items: center; // centrés
+    gap: 0.75rem; // espace réduit
+  }
+
+  .footer-links a {
+    font-size: 0.8125rem; // texte plus petit
+  }
+
+  .footer-phone {
+    margin-top: 0.625rem; // espace réduit
+  }
 }
 
-/* style des liens */
-.footer-links a {
-  color: #fff; /* ✅ texte blanc */
-  text-decoration: none; /* ✅ enlève le soulignement */
-  font-size: 14px;
-  transition: color 0.3s;
+/* ============================
+   ANIMATIONS
+============================ */
+.fade-in {
+  opacity: 0; // invisible au départ
+  transform: translateY(-10px); // légèrement décalé vers le haut
+  animation: fadeIn 1s ease-out forwards; // joue l’animation définie ci-dessous
 }
 
-.footer-links a:hover {
-  text-decoration: underline; /* effet au survol */
-  color: #ddd;
-}
-
-/* numéro en dessous */
-.footer-links .footer-phone {
-  flex-basis: 100%;
-  text-align: center;
-  margin-top: 10px;
+/* Animation "fadeIn" : apparition progressive */
+@keyframes fadeIn {
+  from {
+    opacity: 0; // transparent
+    transform: translateY(10px); // décalé vers le bas
+  }
+  to {
+    opacity: 1; // complètement visible
+    transform: translateY(0); // position normale
+  }
 }

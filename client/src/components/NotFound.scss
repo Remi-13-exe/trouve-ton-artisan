@@ -1,0 +1,47 @@
+/* =======================
+   PAGE 404 / NON TROUVÉE
+   ======================= */
+.notfound-page {
+  display: flex;                  // Utilisation du flexbox pour centrer le contenu
+  flex-direction: column;         // Organisation verticale
+  align-items: center;            // Centrage horizontal
+  justify-content: center;        // Centrage vertical
+  text-align: center;             // Texte centré
+  padding: 5rem 1rem;             // Espacement autour du contenu
+  color: #00497c;                 // Couleur principale du texte
+
+  /* Image illustrative de la page 404 */
+  .notfound-image {
+    max-width: 20rem;             // Largeur max de l'image (~320px)
+    width: 100%;                  // L'image prend toute la largeur disponible
+    margin-bottom: 2rem;          // Espace sous l'image
+  }
+
+  /* Titre principal */
+  h1 {
+    font-size: 3rem;              // Taille importante pour le titre
+    margin-bottom: 1rem;          // Espace sous le titre
+  }
+
+  /* Texte descriptif / message d'erreur */
+  p {
+    font-size: 1.25rem;           // Taille légèrement plus grande pour lisibilité
+    margin-bottom: 2rem;          // Espace avant le bouton
+  }
+
+  /* Bouton pour revenir à l'accueil */
+  .btn-home {
+    background-color: #0074c7;    // Couleur bleu vif
+    color: white;                 // Texte blanc
+    padding: 0.75rem 1.5rem;      // Espacement interne
+    border-radius: 1rem;          // Coins arrondis
+    text-decoration: none;        // Supprime le soulignement
+    font-weight: 600;             // Texte semi-bold
+    transition: background-color 0.3s; // Transition douce pour hover
+
+    /* Effet au survol */
+    &:hover {
+      background-color: #00365c;  // Bleu plus foncé au hover
+    }
+  }
+}

@@ -1,0 +1,61 @@
+// Import du fichier SCSS principal pour hériter des variables et mixins
+@import '../index.scss';
+
+// Style du conteneur "Artisan of the Month"
+.artisan-of-the-month {
+  max-width: 2000px;       // Largeur maximale du conteneur
+  margin-bottom: 13rem;    // Marge en bas pour espacer des sections suivantes
+  padding: 0 1rem;         // Padding horizontal pour éviter que le contenu touche les bords
+  text-align: center;       // Centre le texte à l'intérieur du conteneur
+}
+
+// Grille des cartes d'artisans
+.artisan-grid {
+  display: flex;             // Utilisation du Flexbox
+  justify-content: center;   // Centre les cartes horizontalement
+  flex-wrap: wrap;           // Les cartes passent à la ligne si nécessaire
+  gap: 20.5rem;              // Espacement entre les cartes
+}
+
+// Nom de l'artisan (dans la carte)
+.artisan-name {
+  color: #0077cc;            // Couleur bleue pour le nom
+  font-size: 1.3rem;         // Taille de police
+  font-weight: 600;           // Gras semi-bold
+  margin-bottom: 1.5rem;     // Marge en dessous du nom
+}
+
+// Texte à l'intérieur de la carte d'artisan
+.artisan-card p {
+  margin: 0.6rem 0;          // Marge verticale entre les paragraphes
+  font-size: 0.95rem;        // Taille de police légèrement plus petite
+}
+
+// Texte en gras à l'intérieur de la carte
+.artisan-card strong {
+  font-weight: 600;           // Gras semi-bold
+  color: #333;                // Couleur gris foncé
+}
+
+
+
+
+
+
+
+.artisan-name {
+  color: #0077cc;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.artisan-card p {
+  margin: 0.6rem 0;
+  font-size: 0.95rem;
+}
+
+.artisan-card strong {
+  font-weight: 600;
+  color: #333;
+}
