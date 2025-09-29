@@ -54,7 +54,7 @@ app.post('/contact', (req, res) => {
 });
 
 // Démarrage du serveur
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT; // Render fournit le port via la variable d'environnement
 app.listen(PORT, async () => {
   // Tentative de connexion à la base de données
   try {
