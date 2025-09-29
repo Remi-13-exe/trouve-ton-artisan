@@ -100,7 +100,7 @@ bash
 cd api
 npm install
 node index.js
-L’API est accessible sur http://localhost:5000/api
+L’API est accessible sur http://localhost:5000/api  (n'oublier pas de mettre la clé)
 
 Fonctionnalités
 Recherche et filtre : Barre de recherche pour trouver un artisan par nom et filtrer par catégorie.
