@@ -25,9 +25,10 @@ function App() {
 
   // useEffect pour charger les artisans depuis l'API au montage du composant
   useEffect(() => {
-    fetch("http://localhost:5000/api/artisans", {
-      headers: { "x-api-key": "trouve-ton-artisan-2025-secret-cle" }, // Clé API pour sécuriser la requête
-    })
+    fetch("https://trouve-ton-artisan-tqhr.onrender.com/api/artisans", {
+  headers: { "x-api-key": "trouve-ton-artisan-2025-secret-cle" },
+})
+
       .then((res) => res.json()) // Transforme la réponse en JSON
       .then((data) => setArtisans(data)) // Remplit le state avec les données
       .catch((err) => console.error("Erreur API artisans :", err)); // Gestion d'erreur
