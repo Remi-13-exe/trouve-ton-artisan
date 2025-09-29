@@ -2,15 +2,15 @@ const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
 const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
+  process.env.DB_NAME,       // Nom de ta base (trouve_artisan_db)
+  process.env.DB_USER,       // Ton user Render
+  process.env.DB_PASSWORD,   // Ton mot de passe Render
   {
-    host: process.env.DB_HOST,
-    dialect: 'mysql',
-    port: process.env.DB_PORT || 3306,
+    host: process.env.DB_HOST,   // Host Render
+    dialect: 'postgres',         // 👉 changer MySQL → Postgres
+    port: process.env.DB_PORT || 5432, // Port PostgreSQL
     dialectOptions: {
-      connectTimeout: 10000
+      ssl: { require: true, rejectUnauthorized: false } // Render impose SSL
     },
     logging: false
   }
