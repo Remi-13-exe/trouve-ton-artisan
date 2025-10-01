@@ -1,10 +1,11 @@
 // ===============================
-// app.js - Serveur principal (Railway Ready)
+// app.js - Serveur principal (Railway + React Ready)
 // ===============================
 
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
 dotenv.config(); // Charge les variables depuis .env
 
 // ===============================
@@ -36,14 +37,13 @@ app.use((req, res, next) => {
 // ===============================
 // Middleware CORS
 // ===============================
-// ⚠️ Important : CORS doit être **avant** le middleware API Key
 app.use(cors({
-  origin: '*', // En prod, remplacer par l'URL exacte du front
+  origin: '*', // En prod, remplace par l'URL exacte du frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'X-API-KEY'],
-  preflightContinue: true, // Laisse passer le middleware après OPTIONS
+  preflightContinue: true,
 }));
-app.options('*', cors()); // Gestion des requêtes préflight OPTIONS
+app.options('*', cors());
 
 // ===============================
 // Middleware JSON et nettoyage URLs
@@ -66,16 +66,21 @@ app.use('/api/artisans', artisansRoute);
 // app.use('/api/categories', categoryRoute);
 // app.use('/api/specialites', specialiteRoute);
 
-// Route test
-app.get('/', (req, res) => {
-  console.log("✅ Requête GET / (test route) exécutée avec succès");
-  res.send('API opérationnelle 🚀');
-});
-
+// ===============================
 // Route contact
+// ===============================
 app.post('/contact', (req, res) => {
   console.log("📩 Nouveau message reçu via /contact :", req.body);
   res.json({ message: 'Message reçu !' });
+});
+
+// ===============================
+// Servir le frontend React compilé
+// ===============================
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+app.get(/^\/(?!api).*/, (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
 // ===============================
