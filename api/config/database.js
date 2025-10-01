@@ -18,4 +18,3 @@ const sequelize = new Sequelize(
 
 // Exportation de l'instance Sequelize pour l'utiliser dans d'autres fichiers du projet
 module.exports = sequelize;
-

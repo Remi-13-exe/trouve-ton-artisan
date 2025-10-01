@@ -23,4 +23,3 @@ root.render(
     <App /> {/* Composant principal de l'application */}
   </React.StrictMode>
 );
-

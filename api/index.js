@@ -1,62 +1,104 @@
-// Importation des modules nécessaires
+// ===============================
+// app.js - Serveur principal (Railway Ready)
+// ===============================
+
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-dotenv.config(); // Chargement des variables d'environnement depuis le fichier .env
+dotenv.config(); // Charge les variables depuis .env
 
-// Importation des middlewares
+// ===============================
+// Import middlewares & routes
+// ===============================
 const apiKeyMiddleware = require('./src/middlewares/apiKeyMiddleware');
 const errorHandler = require('./src/middlewares/errorHandler');
-
-// Importation des routes
 const artisansRoute = require('./src/routes/artisanRoutes');
-// Tu peux ajouter ici d'autres routes si nécessaire
+// const categoryRoute = require('./src/routes/categoryRoutes');
+// const specialiteRoute = require('./src/routes/specialiteRoutes');
 
-// Importation de l'instance Sequelize
+// Sequelize
 const { sequelize } = require('./src/models');
 
-// Création de l'application Express
 const app = express();
 
-// Middleware pour parser le JSON dans le corps des requêtes
-app.use(express.json());
+// ===============================
+// Logger personnalisé pour DEBUG
+// ===============================
+app.use((req, res, next) => {
+  console.log("📥 Nouvelle requête reçue :");
+  console.log("➡️ Méthode :", req.method);
+  console.log("➡️ URL :", req.url);
+  console.log("➡️ Headers :", req.headers);
+  console.log("➡️ Body :", req.body);
+  next();
+});
 
-// Middleware CORS pour autoriser le front-end à accéder à l'API
+// ===============================
+// Middleware CORS
+// ===============================
+// ⚠️ Important : CORS doit être **avant** le middleware API Key
 app.use(cors({
-  origin: 'http://localhost:3000',             // Front-end autorisé
-  methods: ['GET', 'POST'],                    // Méthodes HTTP autorisées
-  allowedHeaders: ['Content-Type', 'X-API-KEY'] // Headers autorisés
+  origin: '*', // En prod, remplacer par l'URL exacte du front
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'X-API-KEY'],
+  preflightContinue: true, // Laisse passer le middleware après OPTIONS
 }));
+app.options('*', cors()); // Gestion des requêtes préflight OPTIONS
 
-// Middleware pour vérifier la clé API
-app.use(apiKeyMiddleware);
+// ===============================
+// Middleware JSON et nettoyage URLs
+// ===============================
+app.use(express.json());
+app.use((req, res, next) => {
+  req.url = req.url.replace(/[\r\n\t]+/g, '').trim();
+  next();
+});
 
-// Définition des routes
+// ===============================
+// Middleware API Key pour sécuriser les routes /api
+// ===============================
+app.use('/api', apiKeyMiddleware);
+
+// ===============================
+// Routes principales
+// ===============================
 app.use('/api/artisans', artisansRoute);
-// Ajouter ici les autres routes si nécessaire
+// app.use('/api/categories', categoryRoute);
+// app.use('/api/specialites', specialiteRoute);
 
-// Middleware global de gestion des erreurs
-app.use(errorHandler);
-
-// Route de test pour vérifier que l'API est opérationnelle
+// Route test
 app.get('/', (req, res) => {
+  console.log("✅ Requête GET / (test route) exécutée avec succès");
   res.send('API opérationnelle 🚀');
 });
 
-// Route POST pour recevoir les messages de contact
+// Route contact
 app.post('/contact', (req, res) => {
-  // Ici, tu peux ajouter la logique pour envoyer l'email
+  console.log("📩 Nouveau message reçu via /contact :", req.body);
   res.json({ message: 'Message reçu !' });
 });
 
-// Démarrage du serveur
+// ===============================
+// Middleware global d’erreur
+// ===============================
+app.use(errorHandler);
+
+// ===============================
+// Démarrage du serveur + Connexion DB
+// ===============================
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, async () => {
-  // Tentative de connexion à la base de données
+  console.log(`🚀 Serveur Express lancé sur le port ${PORT}`);
+  console.log('🔎 Tentative de connexion à la base Railway...');
+
   try {
     await sequelize.authenticate();
-    // Connexion réussie
+    console.log('✅ Connexion à la base Railway réussie !');
+    console.log(`   🔹 Base de données : ${process.env.DB_NAME}`);
+    console.log(`   🔹 Hôte : ${process.env.DB_HOST}`);
+    console.log(`   🔹 Port : ${process.env.DB_PORT}`);
   } catch (error) {
-    // Gestion des erreurs de connexion
+    console.error('❌ Erreur critique : impossible de se connecter à Railway DB :', error);
   }
 });
