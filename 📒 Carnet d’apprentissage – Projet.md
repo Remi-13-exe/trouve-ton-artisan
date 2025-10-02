@@ -346,9 +346,4 @@
 
 
 
-**Si tu veux, je peux te créer une version PDF / Markdown prête à utiliser comme vrai carnet de bord, avec numérotation, titres et emoji, pour garder toutes tes notes propres et facilement consultables.**
-
-
-
-**Veux que je fasse ça ?**
 
