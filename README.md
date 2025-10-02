@@ -1,13 +1,11 @@
-# Trouve ton artisan
-
-**Plateforme de mise en relation avec les artisans de la région Auvergne-Rhône-Alpes**  
-**Auteur :** Godji Remi  
-**Date :** 29/09/2025
+# 🛠️ Trouve ton artisan
+Plateforme de mise en relation avec les artisans de la région Auvergne-Rhône-Alpes  
+**Auteur :** Godji Rémi  
+**Date :** 02/10/2025  
 
 ---
 
-## Table des matières
-
+## 📚 Table des matières
 1. [Contexte du projet](#contexte-du-projet)  
 2. [Objectifs](#objectifs)  
 3. [Technologies utilisées](#technologies-utilisées)  
@@ -23,104 +21,143 @@
 
 ---
 
-## Contexte du projet
+## 1. 🎯 Contexte du projet
+La région Auvergne-Rhône-Alpes souhaite une plateforme web intuitive et sécurisée permettant aux particuliers de trouver facilement un artisan local selon sa spécialité.
 
-La région Auvergne-Rhône-Alpes souhaite développer une plateforme web intuitive et sécurisée permettant aux particuliers de trouver facilement un artisan local selon sa spécialité.
+**Fonctionnalités attendues :**
+- Rechercher et filtrer les artisans par nom et catégorie
+- Contacter un artisan via un formulaire sécurisé
+- Accéder à des informations sur les prestations, tarifs et localisation
 
-L’objectif est de :
-- Rechercher et filtrer les artisans par catégorie et par nom.
-- Contacter un artisan via un formulaire sécurisé.
-- Obtenir des informations sur les prestations, tarifs et localisation.
-
-**Contraintes importantes :**
-- Accessibilité conforme WCAG 2.1 pour tous les utilisateurs.
-- Mobile-first, responsive sur tous les écrans.
-- Cohérence avec l’identité graphique de la région (logo, couleurs, typographie).
-- Sécurité renforcée : HTTPS, validation des données, clé API côté serveur.
-
----
-
-## Objectifs
-
-Le site doit fournir :
-- Une page d’accueil expliquant le fonctionnement en étapes.
-- Une liste d’artisans filtrable par catégorie et recherche par nom.
-- Une fiche artisan détaillée avec formulaire de contact.
-- Une page 404 pour les liens invalides.
-- Des pages “En construction” pour les sections non encore disponibles.
-- Une API sécurisée pour récupérer dynamiquement les données depuis MySQL.
+**Contraintes :**
+- Accessibilité conforme WCAG 2.1
+- Design responsive (mobile-first)
+- Respect de l’identité graphique régionale
+- Sécurité renforcée (HTTPS, validation, clé API)
 
 ---
 
-## Technologies utilisées
+## 2. 🎯 Objectifs
+Le site doit proposer :  
+- Une page d’accueil explicative  
+- Une liste filtrable d’artisans  
+- Une fiche artisan avec formulaire de contact  
+- Une page 404 personnalisée  
+- Des pages “En construction”  
+- Une API sécurisée connectée à MySQL  
 
+---
+
+## 3. 🧰 Technologies utilisées
 **Frontend :**
 - ReactJS  
-- Sass  
+- Sass (SCSS)  
 - Bootstrap  
 
-**Backend / API :**
+**Backend :**
 - Node.js  
 - Express.js  
-- Sequelize (ORM pour MySQL)  
-- MySQL ou MariaDB  
+- Sequelize (ORM)  
+- MySQL / MariaDB  
 
-**Outils supplémentaires :**
-- Git / GitHub pour le versioning  
-- Visual Studio Code pour le développement  
-- Figma pour les maquettes  
-
----
-
-## Structure du projet
-
-trouve-ton-artisan/ ├─ api/ # Backend (Node.js + Express) │ ├─ config/ │ ├─ controllers/ │ ├─ middlewares/ │ ├─ models/ │ ├─ routes/ │ ├─ index.js │ └─ .env ├─ client/ # Frontend (React) │ ├─ public/ │ ├─ src/ │ │ ├─ assets/ │ │ ├─ components/ │ │ └─ pages/ │ ├─ App.js │ └─ index.js ├─ docs/ │ ├─ maquette/ │ ├─ cahier-des-charges.md │ └─ design.md ├─ config/ ├─ db/ │ ├─ schema.sql │ └─ seed.sql ├─ package.json ├─ package-lock.json └─ README.md
-
-Code
+**Outils :**
+- Git / GitHub  
+- Visual Studio Code  
+- Figma (maquettes)  
 
 ---
 
-## Installation et démarrage
+## 4. 🗂️ Structure du projet
+trouve-ton-artisan/
+├── api/ # Backend Express
+│ ├── config/
+│ ├── controllers/
+│ ├── middlewares/
+│ ├── models/
+│ ├── routes/
+│ ├── index.js
+│ └── .env
+├── client/ # Frontend React
+│ ├── public/
+│ ├── src/
+│ │ ├── assets/
+│ │ ├── components/
+│ │ │ ├── ArtisanOfTheMonth.jsx
+│ │ │ ├── ArtisanDetail.jsx
+│ │ │ ├── ArtisanFiltre.jsx
+│ │ │ ├── ArtisanList.jsx
+│ │ │ ├── ArtisansDuMois.jsx
+│ │ │ ├── Header.jsx
+│ │ │ ├── Footer.jsx
+│ │ │ ├── ScrollToTop.jsx
+│ │ │ ├── NotFound.jsx
+│ │ │ └── UnderConstruction.jsx
+│ │ └── pages/
+│ │ ├── Home.jsx
+│ │ ├── ArtisanList.jsx
+│ │ ├── ArtisanDetail.jsx
+│ │ ├── NotFound.jsx
+│ │ └── UnderConstruction.jsx
+│ ├── App.js
+│ └── index.js
+├── db/ # Base de données
+│ ├── schema.sql
+│ └── seed.sql
+├── docs/ # Livrables et maquettes
+│ ├── cahier-des-charges.md
+│ ├── design.md
+│ └── maquette/
+├── README.md
+└── package.json
 
-### Prérequis
+yaml
+Copier le code
 
-- Node.js et npm installés  
-- MySQL installé ou accès à une base distante  
+---
 
-### Frontend
+## 5. 🚀 Installation et démarrage
+### 🔧 Prérequis
+- Node.js et npm  
+- MySQL installé ou accès distant  
 
+### 🖥️ Frontend
 ```bash
 cd client
 npm install
 npm start
-Accéder à http://localhost:3000
+Accès local : http://localhost:3000
 
-Backend
+⚙️ Backend
 bash
+Copier le code
 cd api
 npm install
 node index.js
-L’API est accessible sur http://localhost:5000/api  (n'oublier pas de mettre la clé)
+Accès API : http://localhost:5000/api
+⚠️ N’oubliez pas d’ajouter une clé API dans .env
 
-Fonctionnalités
-Recherche et filtre : Barre de recherche pour trouver un artisan par nom et filtrer par catégorie.
+6. ✨ Fonctionnalités
+Recherche et filtre par nom et catégorie
 
-Fiche artisan : Nom, photo, spécialité, localisation, description, note, site web et formulaire de contact.
+Fiche artisan : nom, photo, spécialité, ville, description, note, site web, formulaire
 
-Artisans du mois : Présentation de 3 artisans sélectionnés.
+Artisans du mois : sélection dynamique
 
-Pages légales : Mentions légales, accessibilité, cookies (actuellement en construction).
+Pages légales (mentions, accessibilité, cookies – en construction)
 
-Page 404 : Affichage lorsque la page demandée n’existe pas.
+Page 404 personnalisée
 
-API
-Routes principales
+7. 🔌 API
+Routes principales :
+
 GET /api/artisans → Liste des artisans
 
 GET /api/artisans/:id → Détails d’un artisan
 
-Exemple de réponse JSON
+Exemple de réponse JSON :
+
 json
+Copier le code
 {
   "id": 1,
   "nom": "Pierre & Bois",
@@ -128,43 +165,54 @@ json
   "ville": "Marseille",
   "note": 5
 }
-Base de données
-Tables principales
-Artisan : id, nom, métier, catégorie, ville, site_web, description, note, photo_url
+8. 🗃️ Base de données
+Tables principales :
 
-Categorie : id, nom
+Artisan : id, nom, métier, ville, site_web, description, note, photo_url, specialite_id
 
 Specialite : id, nom, categorie_id
 
-Scripts SQL
-db/schema.sql → Création des tables
+Categorie : id, nom
 
-db/seed.sql → Peuplement des données de test
+Organisation :
 
-Sécurité
-Clé API pour limiter l’accès à l’API
+Un artisan → une seule spécialité
 
-Validation côté frontend et backend
+Une spécialité → une seule catégorie
+
+Scripts SQL :
+
+db/schema.sql → création des tables
+
+db/seed.sql → insertion des données de test
+
+📁 Toutes les informations sont disponibles dans le dossier db/ du dépôt GitHub
+
+9. 🔐 Sécurité
+Clé API obligatoire pour accéder aux routes
+
+Validation des données côté client et serveur
 
 Protection contre les injections SQL via Sequelize
 
-HTTPS recommandé pour le déploiement
+HTTPS recommandé
 
-Conformité aux normes d’accessibilité et W3C
+Respect des normes W3C et WCAG 2.1
 
-Maquettes
-Figma utilisé pour la création des maquettes desktop, tablette et mobile
+10. 🖌️ Maquettes
+Réalisées avec Figma (desktop, tablette, mobile)
 
-Pages : Home, Liste des artisans, Fiche artisan, 404, Under Construction
+Pages : Accueil, Liste artisans, Fiche artisan, 404, En construction
 
 Palette de couleurs et typographie Graphik respectées
 
-Déploiement
-Frontend : Déployé sur [Vercel / Netlify]
+11. 🌐 Déploiement
+Frontend : Vercel ou Netlify
 
-Backend / API : Déployé sur [Railway / Render]
+Backend / API : Render ou Railway
 
-Base MySQL : Hébergée sur Railway ou PlanetScale
+Base MySQL : Railway ou PlanetScale
 
-Licence
-Projet réalisé dans le cadre du devoir académique – usage personnel et non commercial.
+12. 📄 Licence
+Projet réalisé dans le cadre d’un devoir académique.
+Usage personnel uniquement – non commercial.
